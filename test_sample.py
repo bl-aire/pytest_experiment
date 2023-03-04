@@ -60,9 +60,14 @@ def test_match():
 
 
 # ASSERTION INSPECTION DETAILS
-#
-# Assertion rewriting caches files on disk
-#
-# Disabling assert rewriting
-#
-#
+# You can manually enable assertion rewriting for an imported module by calling register_assert_rewrite before you import it (a good place to do that is in your root conftest.py).
+
+# Assertion rewriting caches files on disk:
+# pytest will write back the rewritten modules to disk for caching. You can disable this behavior (for example to avoid leaving stale .pyc files around in projects that move files around a lot) by adding this to the top of your conftest.py file:
+# import sys
+# sys.dont_write_bytecode = True
+
+# Disabling assert rewriting:
+# pytest rewrites test modules on import by using an import hook to write new pyc files. Most of the time this works transparently. However, if you are working with the import machinery yourself, the import hook may interfere. If this is the case you have two options: 
+# Disable rewriting for a specific module by adding the string PYTEST_DONT_REWRITE to its docstring.
+# Disable rewriting for all modules by using --assert=plain.
