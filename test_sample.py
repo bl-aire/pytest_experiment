@@ -53,3 +53,16 @@ def test_match():
 
 
 # Making use of context-sensitive comparisons ( in test_comparison.py )
+
+
+
+# Defining your own explanation for failed assertions ( in conftest.py and test_foocompare.py )
+
+
+# ASSERTION INSPECTION DETAILS
+#
+# Assertion rewriting caches files on disk
+#
+# Disabling assert rewriting
+#
+#
