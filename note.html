@@ -8,7 +8,11 @@
     <title>Pytest Note</title>
     <style>
         h1{
-            font-size: 3em;
+            font-size: 2.5em;
+        }
+
+        h2{
+            font-size: 2.3em;
         }
 
         table {
@@ -41,7 +45,7 @@
                 subdirectories
             </p>
 
-            <h2>Specifying which tests to run</h2>
+            <h2>Running tests</h2>
             <table>
                 <tr>
                     <th>Funtion</th>
@@ -99,7 +103,7 @@
             </table>
 
 
-            <h2>Getting help on version, option names, environment variables</h2>
+            <h2>Getting help on -v, option names, env variables</h2>
             <ul>
                 <li>pytest --version</li> <!--where pytest was imported from-->
                 <li>pytest --fixtures</li> <!--available builtin function arguments-->
@@ -107,11 +111,55 @@
             </ul>
 
 
-            <h2>Profiling test execution duration</h2>
+            <h2>Test exec duration</h2>
             <p>
                 To get a list of the slowest 10 test durations over 1.0s long: <br>
                 <i>pytest --durations=10 --durations-min=1.0</i>
+                <!--By default, pytest will not show test durations that are <0.005s unless -vv is passed on the CL-->
             </p>
+
+
+            <h2>Loading plugins</h2>
+            <h3>Early loading plugins</h3>
+            <p>
+                You can early-load plugins (internal and external) explicitly in the command-line with the -p option:
+            </p>
+            <b>pytest -p mypluginmodule</b>
+
+            <h3>Disabling plugins</h3>
+            <p>
+                Use the <b>-p</b> option together with the prefix <b>no:</b>
+            </p>
+            <p>
+                Example: <b>pytest -p no:doctest</b> 
+                <!--doctest is responsible for executing doctest tests from text files-->
+            </p>
+
+        </section>
+
+        <section>
+            <h1 id="alternative">Alternative ways of calling pytest</h1>
+            <ol>
+                <li>
+                    Calling pytest through <b>python -m pytest</b>
+                </li>
+                <li>
+                    Calling pytest from Python code
+                </li>
+            </ol>
+
+            <h3>python -m pytest [...]</h3>
+            <p>
+                Equivalent to CLI <b>pytest [...]</b> but it adds the CD to sys.path
+            </p>
+
+            <h3>From python code via retcode = pytest.main()</h3>
+            <ul>
+                <li>Acts as if you would call “pytest” from the CLI</li>
+                <li>It will <b>NOT raise SystemExit</b> but <b>return the exit code instead</b></li>
+                <li>You can pass in options and arguments: <b>retcode = pytest.main(["-x", "mytestdir"])</b></li>
+                <li>You can specify additional plugins to pytest.main(..check doc)</li>
+            </ul>
         </section>
 
     </main>
