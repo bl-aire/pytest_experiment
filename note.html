@@ -98,12 +98,20 @@
                 </tr>
             </table>
 
+
             <h2>Getting help on version, option names, environment variables</h2>
             <ul>
                 <li>pytest --version</li> <!--where pytest was imported from-->
                 <li>pytest --fixtures</li> <!--available builtin function arguments-->
                 <li>pytest -h | --help</li> <!--help on command line and config file options-->
             </ul>
+
+
+            <h2>Profiling test execution duration</h2>
+            <p>
+                To get a list of the slowest 10 test durations over 1.0s long: <br>
+                <i>pytest --durations=10 --durations-min=1.0</i>
+            </p>
         </section>
 
     </main>
