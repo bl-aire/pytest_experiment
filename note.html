@@ -1,14 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pytest Note</title>
+    <style>
+        h1{
+            font-size: 3em;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
+
 <body>
     <header></header>
-    <main></main>
+    <main>
+        <section>
+            <h1>How to invoke pytest</h1>
+            <p>
+                Generally invoked via <i>pytest</i> command but there are <a href="#alternative">other ways</a>.
+                Executes all tests in all files whose names follow the form test_*.py or \*_test.py in the cd and its
+                subdirectories
+            </p>
+
+            <h2>Specifying which tests to run</h2>
+            <table>
+                <tr>
+                    <th>Funtion</th>
+                    <th>CLI command</th>
+                    <th>Extra info</th>
+                </tr>
+
+                <tr>
+                    <td>Run tests in a module</td>
+                    <td>
+                        <i>pytest test_mod.py</i>
+                    </td>
+                    <td>Nil</td>
+                </tr>
+
+                <tr>
+                    <td>Run tests in a dir</td>
+                    <td>
+                        <i>pytest testing/</i>
+                    </td>
+                    <td>Nil</td>
+                </tr>
+
+                <tr>
+                    <td>Run tests by keyword expressions</td>
+                    <td>
+                        <i>pytest -k "MyClass and not method"</i> (case-sensitive)
+                    </td>
+                    <td>Will run tests which contain names that match the given string expression (case-insensitive)</td>
+                </tr>
+
+                <tr>
+                    <td>Run tests from packages</td>
+                    <td>
+                        <i>pytest --pyargs pkg.testing</i>
+                    </td>
+                    <td>Import pkg.testing and use its filesystem location to find and run tests from</td>
+                </tr>
+
+                <tr>
+                    <td>Run tests by marker expressions</td>
+                    <td>
+                        <i>pytest -m slow</i> (case-sensitive)
+                    </td>
+                    <td>Will run all tests which are decorated with the @pytest.mark.slow decorator. Research on "decorators"</td>
+                </tr>
+
+                <tr>
+                    <td>Run tests by node ids</td>
+                    <td>
+                        <i>pytest test_mod.py::test_func</i>, <i>pytest test_mod.py::TestClass::test_method</i>
+                    </td>
+                    <td>Each collected test is assigned a unique nodeid which consist of the module filename followed by specifiers like class names, function names and parameters from parametrization, separated by ::</td>
+                </tr>
+            </table>
+        </section>
+
+    </main>
     <footer></footer>
 </body>
+
 </html>
