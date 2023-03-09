@@ -33,6 +33,23 @@
                     <li>So when a test is marked as having an error, it doesn’t mean the test failed. It just means the test couldn’t even be attempted 'cos <b>one of its dependencies had a problem</b>. This is why one should cut out as many unnecessary dependencies</li>
                 </ul>
             </p>
+
+            <h1>Scope: sharing fixtures across classes, modules, packages or session</h1>
+            <p>
+                <ul>
+                    <li>Fixtures requiring network access depend on connectivity and are usually time-expensive to create.</li>
+                    <li> we can add a <b> scope="module" </b> parameter to the <b>@pytest.fixture</b> invocation to cause a <b>smtp_connection fixture function</b>, responsible to create a connection to a preexisting SMTP server, to only be invoked <b>once per test module </b> (the default is to invoke <b>once per test function</b>)</li>
+                    <li>Multiple test functions in a test module will thus each receive the same smtp_connection fixture instance, thus saving time</li>
+                    <li>Possible values for scope(Fixture scopes) are:</li>
+                    <ol>
+                        <li><b>function:</b> the default scope, the fixture is destroyed at the <b>end of the test</b>.</li>
+                        <li><b>class:</b> the fixture is destroyed during teardown of the last test in the class.</li>
+                        <li><b>module:</b> the fixture is destroyed during teardown of the last test in the module.</li>
+                        <li><b>package:</b> the fixture is destroyed during teardown of the last test in the package.</li>
+                        <li><b>session:</b> the fixture is destroyed at the end of the test session.</li>
+                    </ol>
+                </ul>
+            </p>
         </section>
     </main>
     <footer></footer>
