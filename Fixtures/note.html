@@ -59,6 +59,24 @@
                     <li>Example in <b>test_dynamic.py</b></li>
                 </ul>
             </p>
+
+            <h1>Teardown/Cleanup (AKA Fixture finalization)</h1>
+            <p>
+                When we run our tests, we’ll want to make sure they clean up after themselves so they don’t mess with any other tests (and also so that we don’t leave behind a mountain of test data to bloat the system). Fixtures in pytest offer a very useful teardown system which can be leveraged in two ways:
+
+                <ol>
+                    <li>yield fixtures (recommended)</li>
+                        <ul>
+                            <li>“Yield” fixtures yield instead of return</li>
+                            <li>Any teardown code for that fixture is placed <b>after</b> the yield</li>
+                            <li>Once pytest figures out a linear order for the fixtures, it will run each one up until it returns or yields, and then move on to the next fixture in the list to do the same thing.</li>
+                            <li>Once the test is finished, pytest will go back down the list of fixtures, but in the <b>reverse order</b>, taking each one that yielded, and running the code inside it that was <b>after</b> the yield statement.</li>
+                            <li>
+                                <b>emaillib.py</b> and <b>test_emaillib.py</b>
+                            </li>
+                        </ul>
+                </ol>
+            </p>
         </section>
     </main>
     <footer></footer>
